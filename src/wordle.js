@@ -17,7 +17,6 @@ export function buildLetter(letter, status) {
 
 export class Wordle {
   wordSize = 5;
-
   maxGuesses = 6;
 
   constructor(maxGuesses) {
