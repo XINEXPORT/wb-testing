@@ -55,7 +55,7 @@ describe ('constructing a new Wordle instance', () => {
 const {Wordle, buildLetter} = await import ('../src/wordle.js')
 
 //WORDLE - VALUE OF WORD PROPERTY IS APPLE
-describe ('constructing a new Wordle instance', () =>{
+describe ('EQUAL TO APPLE', () =>{
     test ('Check the value of its word property is APPLE', () =>{
         const wordle = new Wordle()
         expect(wordle.word).toEqual('APPLE')
@@ -64,7 +64,7 @@ describe ('constructing a new Wordle instance', () =>{
 
 
 // BUILD GUESS - APPLE - CORRECT
-describe('Building a Guess from Word instance', () => {
+describe('LETTER IS CORRECT', () => {
     test ('Sets the status of a correct letter to CORRECT', () =>{
         const word = new Wordle()
         const wordArr = word.buildGuessFromWord ('AP___')
@@ -75,7 +75,7 @@ describe('Building a Guess from Word instance', () => {
 })
 
 //BUILD GUESS - APPLE - PRESENT
-describe('Building a Guess from Word instance', () => {
+describe('APPLE IS PRESENT', () => {
     test ('Sets the status of a correct letter to CORRECT', () =>{
         const word = new Wordle()
         const wordArr = word.buildGuessFromWord ('E___')
@@ -86,12 +86,38 @@ describe('Building a Guess from Word instance', () => {
 })
 
 //BUILD GUESS - APPLE - ABSENT
-describe('Building a Guess from Word instance', () => {
+describe('APPLE IS ABSENT', () => {
     test ('Sets the status of a correct letter to CORRECT', () =>{
         const word = new Wordle()
         const wordArr = word.buildGuessFromWord ('Z_X_')
         console.log(wordArr)
         expect(wordArr[0].status).toBe('ABSENT')
 
+    })
+})
+
+//WORDLE - APPEND GUESS /TTHROW ERROR/ NO MORE GUESS
+describe ('NO MORE GUESSES', () =>{
+    test('throws an error if there are no more guesses', () =>{
+        const word = new Wordle(1)
+        const wordArr = word.appendGuess('GUESS')
+        expect (()=>wordle.appendGuess('GUESS')).toThrow();
+    })
+})
+
+
+///WORDLE - APPEND GUESS //THROW ERROR // 5 LENGTH
+describe ('REQUIRED - 5 LENGTH', () =>{
+    test ('throws an error if word is NOT 5 in length', () =>{
+        const word = new Wordle()
+        expect(() =>  wordle.appendGuess('ABKJHKJHJKH')).toThrow();
+    })
+})
+
+//WORDLE - GUESS IS NOT A WORD
+describe ('WORD IS NOT PRESENT', ()=>{
+    test ('test if the guess is not a word', () =>{
+        const word = new Wordle(1)
+        expect(()=>wordle.apppendGuess('123456')).toThrow();
     })
 })
